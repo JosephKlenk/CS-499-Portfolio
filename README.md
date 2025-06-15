@@ -9,7 +9,7 @@ This repository contains my capstone ePortfolio for CS 499, showcasing enhanced 
 - **Databases**: Global Rain Animal Shelter Dashboard
 
 ## Live Portfolio
-🌐 **View Portfolio:** https://josephklenk.github.io/cs499-eportfolio/
+🌐 **View Portfolio:** https://josephklenk.github.io/
 
 ## Repository Structure
 - `/artifacts/` - Original and enhanced code for all three artifacts with proper narratives

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joseph Klenk - CS 499 ePortfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: #151515;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #151515;
+            background-color: white;
+        }
+
+        /* Header */
+        .header {
+            background: #151515;
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+
+        .header .contact-info {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            margin: -40px auto 0;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: #151515;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            font-weight: 600;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #151515;
+        }
+
+        /* Professional Self-Assessment */
+        .assessment-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .assessment-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Code Review */
+        .code-review {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 2rem auto;
+            background: #000;
+            border-radius: 10px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* Artifact Cards */
+        .artifact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .artifact-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .artifact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .artifact-card h3 {
+            color: #151515;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .artifact-card h4 {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .artifact-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .artifact-card ul {
+            text-align: left;
+            margin: 1rem 0;
+            padding-left: 1.2rem;
+        }
+
+        .artifact-card li {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .artifact-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #151515;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(21, 21, 21, 0.4);
+            background: #333;
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #151515;
+            border: 2px solid #151515;
+        }
+
+        .btn-secondary:hover {
+            background: #151515;
+            color: white;
+        }
+
+        /* Experience Section */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .experience-item {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #151515;
+        }
+
+        .experience-item h4 {
+            color: #151515;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .company {
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            list-style-type: disc;
+            padding-left: 1.2rem;
+        }
+
+        .experience-item li {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #151515;
+        }
+
+        .skill-category h4 {
+            color: #151515;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.3rem 0;
+            color: #666;
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .education-item {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #151515;
+        }
+
+        .education-item h4 {
+            color: #151515;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item .degree {
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item .gpa {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .contact-links a {
+            color: #151515;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 2px solid #151515;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            background: #151515;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: #151515;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 2rem 0;
+            }
+
+            .artifact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .artifact-links {
+                flex-direction: column;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Offset for fixed navbar */
+        .section {
+            scroll-margin-top: 80px;
+        }
+
+        /* Narrative boxes */
+        .narrative-content {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            border-left: 4px solid #151515;
+        }
+
+        .narrative-content h5 {
+            color: #151515;
+            margin-bottom: 1rem;
+        }
+
+        .narrative-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#professional-assessment">Professional Assessment</a></li>
+                <li><a href="#code-review">Code Review</a></li>
+                <li><a href="#CS-360">Artifact 1</a></li>
+                <li><a href="#algorithms-data-structures">Artifact 2</a></li>
+                <li><a href="#databases">Artifact 3</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>JOSEPH KLENK</h1>
+            <p class="subtitle">Computer Science Graduate | Software Developer | Full-Stack Engineer</p>
+            <div class="contact-info">
+                <p>me@jklenk.com • linkedin.com/in/josephklenk/ • github.com/JosephKlenk</p>
+                <p>• Ocean, New Jersey 07712</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Professional Self-Assessment -->
+            <section id="professional-assessment" class="section">
+                <h2>Professional Self-Assessment</h2>
+                <div class="assessment-content">
+                    <p>
+                        Completing my course requirements throughout the Computer Science program and developing this ePortfolio is significant in demonstrating my strengths, shaping my professional goals, and transition to a successful career as a software engineer. This capstone project shows my transition from a student programmer to a well-rounded professional software engineer who is capable of solving problems across multiple domains. I have two major achievements documenting my progression: my experience as a Software Engineering Intern at Wells Fargo, and my academic achievements maintaining a 3.90 GPA.
+                    </p>
+                    <p>
+                        My journey through the computer science program has made me capable of succeeding in collaborative team environments. For instance, during my internship with Wells Fargo, I contributed to the development of a Kafka data streaming platform and collaborated with a team of developers to reduce system downtime by 25%. Overall, this real-world experience, in addition to completing CS 250 (Software Development Lifecycle), has given me exposure to Agile methodology, that has taught me the importance of clear communication with stakeholders of various technical backgrounds.
+                    </p>
+                    <p>
+                        Within data structure and algorithms, my upgraded Pirate Intelligent Agent artifact reflects my proficiency in next-generation algorithmic techniques such as priority queue implementations and reinforcement learning optimizations. The 28.8% improvement from priority-based experience replay reflects my capability to utilize theoretical concepts for everyday problems, a skill directly applicable to the optimization efforts I conducted on internal systems while I was an intern at Wells Fargo.
+                    </p>
+                    <p>
+                        My experience with software engineering and databases is evidenced through the Android inventory management application, as well as an animal shelter dashboard powered by MongoDB. Both of these projects show my capability as a full-stack developer with many skills, from mobile application design to complex aggregations in a database. This fits well with my work experience in cloud infrastructure and automated testing frameworks because it shows that I evolved from academic projects to projects involving enterprise-scale solutions.
+                    </p>
+                    <p>
+                        Security has been a steady point of emphasis with all my improvements, from putting BCrypt password hashing into place within the Android app to secure database connections and data verification within the dashboard app. Work experience managing sensitive customer data as a Bank Teller and course study of software security have given me a security-focused mindset invaluable to today's development arena.
+                    </p>
+                    <p>
+                        The three artifacts in this portfolio compliment each other to showcase the full range of my abilities as a software engineer. Each of these artifacts represents a different aspect of software development: mobile app development with security considerations, implementing advanced algorithms with performance improvements, and full-stack web development with database considerations. When you consider each of these artifacts along with my professional experience developing Kafka streaming platforms and automated testing frameworks, they illustrate my readiness to contribute immediately to any software development team while continuing to grow and learn in this dynamic field.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Code Review -->
+            <section id="code-review" class="section">
+                <h2>Code Review</h2>
+                <div class="code-review">
+                    <p>My comprehensive code review analyzes three artifacts from previous coursework, identifying areas for improvement and outlining enhancement strategies across software design, algorithms, and database integration. This review demonstrates my ability to critically analyze existing code and plan systematic improvements.</p>
+                    
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/QyFcl_Fba-k" title="Code Review Video" allowfullscreen></iframe>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="#" class="btn btn-secondary">View Code Review Script</a>
+                    </div>
+
+                    <div class="narrative-content">
+                        <h5>Code Review Summary</h5>
+                        <p>The code review covers three critical areas of computer science, examining existing functionality, identifying improvement opportunities, and planning enhancements that align with industry best practices and course outcomes. Each artifact was evaluated for structure, security, performance, and maintainability.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Software Engineering Artifact -->
+            <section id="CS-360" class="section">
+                <h2>Enhancement One: Software Design & Engineering</h2>
+                <div class="artifact-card">
+                    <h3>Android Inventory Management Application</h3>
+                    <h4>Original Course: CS 360 - Mobile Architecture and Programming</h4>
+                    <p><strong>Artifact Created:</strong> Winter 2024</p>
+                    <p>Enhanced Android application with improved architecture, security, and performance. Originally a basic inventory management app with user authentication, now implementing industry-standard design patterns and security practices.</p>
+                    
+                    <h5>Key Enhancements Implemented:</h5>
+                    <ul>
+                        <li><strong>MVC Architecture:</strong> Implemented Model-View-Controller pattern for better separation of concerns and maintainability</li>
+                        <li><strong>Security Enhancement:</strong> Added BCrypt password hashing to replace plaintext storage, addressing critical security vulnerability</li>
+                        <li><strong>Error Handling:</strong> Comprehensive exception handling throughout database operations and UI interactions</li>
+                        <li><strong>Performance Optimization:</strong> Implemented pagination system for inventory display to handle large datasets efficiently</li>
+                        <li><strong>Code Quality:</strong> Enhanced documentation with JavaDoc comments and standardized naming conventions</li>
+                    </ul>
+                    
+                    <div class="artifact-links">
+                        <a href="#" class="btn btn-primary">View Original Code</a>
+                        <a href="#" class="btn btn-primary">View Enhanced Code</a>
+                        <a href="#" class="btn btn-secondary">Full Enhancement Narrative</a>
+                    </div>
+
+                    <div class="narrative-content">
+                        <h5>Skills Demonstrated & Course Outcomes</h5>
+                        <p><strong>Design and evaluate computing solutions:</strong> Design and evaluate computing solutions using algorithmic principles and computer science practices appropriate to the solution, while managing trade-offs in design choices.</p>
+                        <p><strong>Well-founded and innovative techniques:</strong> Demonstrate ability to use well-founded and innovative techniques, skills, and tools in computing practices for implementing computer solutions that deliver value.</p>
+                        <p><strong>Security mindset:</strong> Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities and ensure enhanced security of data and resources.</p>
+                        
+                        <p>This enhancement demonstrates my growth in applying industry-standard architectural patterns, implementing secure coding practices, and making informed design decisions that balance functionality with performance and maintainability.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Algorithms and Data Structures Artifact -->
+            <section id="algorithms-data-structures" class="section">
+                <h2>Enhancement Two: Algorithms & Data Structures</h2>
+                <div class="artifact-card">
+                    <h3>Pirate Intelligent Agent with Priority Experience Replay</h3>
+                    <h4>Original Course: CS 370 - Current/Emerging Trends in Computer Science</h4>
+                    <p><strong>Artifact Created:</strong> Fall 2024</p>
+                    <p>Advanced reinforcement learning agent implementing sophisticated algorithmic optimizations. Originally using basic deep Q-learning with random experience replay, now featuring priority-based learning with measurable performance improvements.</p>
+                    
+                    <h5>Key Algorithmic Enhancements:</h5>
+                    <ul>
+                        <li><strong>Priority Queue Implementation:</strong> Replaced list-based random sampling with heap-based priority queue using Python's heapq module for O(log n) operations</li>
+                        <li><strong>Temporal Difference Error Calculation:</strong> Implemented TD-error algorithms to rank experiences by learning value</li>
+                        <li><strong>Intelligent Sampling:</strong> Created probability distribution algorithms for importance-based experience sampling</li>
+                        <li><strong>Performance Achievement:</strong> Achieved 28.8% faster convergence (156 vs 219 epochs to reach 100% win rate)</li>
+                        <li><strong>Modular Design:</strong> Refactored code with clear separation between environment interaction, neural network, and training logic</li>
+                    </ul>
+                    
+                    <div class="artifact-links">
+                        <a href="#" class="btn btn-primary">View Original Code</a>
+                        <a href="#" class="btn btn-primary">View Enhanced Code</a>
+                        <a href="#" class="btn btn-secondary">Full Enhancement Narrative</a>
+                    </div>
+
+                    <div class="narrative-content">
+                        <h5>Technical Implementation Details</h5>
+                        <p>The enhanced GameExperience class includes both original and priority-based methods controlled by the use_priority parameter. When enabled, it computes TD-error for each episode using the formula: |target_Q - current_Q|, storing episodes in a max-heap as (-priority, index, episode) tuples for optimal sampling efficiency.</p>
+                        
+                        <h5>Course Outcomes Achievement</h5>
+                        <p><strong>Design and evaluate computing solutions:</strong> Applied algorithmic principles to design computing solutions that solve pathfinding problems while managing trade-offs between exploration and exploitation in reinforcement learning.</p>
+                        <p><strong>Well-founded and innovative techniques:</strong> Implemented well-founded techniques from reinforcement learning research, specifically priority experience replay methods from sophisticated AI systems.</p>
+                        
+                        <p>This project enhanced my understanding of the interaction between data structures and algorithm performance, particularly in machine learning contexts where the choice of data structure directly impacts learning efficiency and computational requirements.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Database Artifact -->
+            <section id="databases" class="section">
+                <h2>Enhancement Three: Databases</h2>
+                <div class="artifact-card">
+                    <h3>Global Rain Animal Shelter Dashboard</h3>
+                    <h4>Original Course: CS 340 - Advanced Programming Concepts</h4>
+                    <p><strong>Artifact Created:</strong> Winter 2024</p>
+                    <p>Full-stack web application with advanced MongoDB integration for animal rescue operations. Originally featuring basic find() queries and static displays, now implementing sophisticated database operations and real-time capabilities.</p>
+                    
+                    <h5>Database Enhancements Implemented:</h5>
+                    <ul>
+                        <li><strong>MongoDB Aggregation Pipelines:</strong> Implemented complex data analysis operations at the database level for age demographics and breed statistics</li>
+                        <li><strong>Query Optimization:</strong> Added intelligent indexing and field projection to improve performance with large datasets</li>
+                        <li><strong>Real-time Updates:</strong> Integrated WebSocket connections for automatic dashboard refresh as database changes occur</li>
+                        <li><strong>Error Handling:</strong> Comprehensive database error handling with user-friendly error messages and connection management</li>
+                        <li><strong>Modular Architecture:</strong> Created centralized database module with specialized query methods for better code organization</li>
+                    </ul>
+                    
+                    <div class="artifact-links">
+                        <a href="#" class="btn btn-primary">View Original Code</a>
+                        <a href="#" class="btn btn-primary">View Enhanced Code</a>
+                        <a href="#" class="btn btn-secondary">Full Enhancement Narrative</a>
+                    </div>
+
+                    <div class="narrative-content">
+                        <h5>Technical Architecture</h5>
+                        <p>The enhanced application leverages MongoDB's aggregation framework to perform complex data analysis operations directly at the database level, significantly reducing application-side processing and improving overall performance. The implementation includes intelligent caching strategies and optimized query patterns.</p>
+                        
+                        <h5>Course Outcomes Achievement</h5>
+                        <p><strong>Design and evaluate computing solutions:</strong> Designed and evaluated database solutions using algorithmic principles in MongoDB aggregation pipelines to perform complex data analysis efficiently.</p>
+                        <p><strong>Well-founded and innovative techniques:</strong> Applied advanced MongoDB capabilities, intelligent indexing, and real-time dashboard features that provide enhanced value to end users.</p>
+                        <p><strong>Security mindset:</strong> Implemented security mindset through comprehensive data validation, robust error handling, and secure database connection management.</p>
+                        
+                        <p>This enhancement taught me the critical importance of database-level optimization and the value of performing complex operations at the data source rather than in application code, skills directly applicable to enterprise-scale applications.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience -->
+            <section class="section">
+                <h2>Professional Experience</h2>
+                <div class="experience-grid">
+                    <div class="experience-item">
+                        <h4>Software Engineering Intern</h4>
+                        <div class="company">Wells Fargo</div>
+                        <div class="date">June 2023 - August 2023, June 2024 – August 2024</div>
+                        <ul>
+                            <li>Contributed to the development and deployment of a Kafka data streaming platform, enabling real-time data processing
+                                and reducing data latency for internal applications. Assisted in expanding operational infrastructure into Google Cloud
+                                to improve system scalability and reliability.</li>
+                            <li>Collaborated with a team of developers to troubleshoot and resolve critical production issues, contributing to a 25%
+                                reduction in system downtime and improved overall system availability. Gained experience in production-level
+                                debugging and problem-solving methodologies.</li>
+                            <li>Designed and executed automated test cases for key components of internal systems, helping to improve overall system
+                                reliability by detecting potential bugs before they reached production. Developed skills in test automation and quality
+                                assurance practices.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <h4>Bank Teller</h4>
+                        <div class="company">Wells Fargo</div>
+                        <div class="date">November 2021 - July 2025</div>
+                        <ul>
+                            <li>Process over 100 daily financial transactions with 100% accuracy while managing sensitive customer data, demonstrating
+                                meticulous attention to detail and strong data security practices applicable to software development environments.</li>
+                            <li>Developed expertise in Wells Fargo's proprietary banking systems, quickly mastering complex software interfaces and
+                                providing technical support to 10+ team members.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Skills -->
+            <section class="section">
+                <h2>Technical Skills & Tools</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Programming Languages</h4>
+                        <ul>
+                            <li>Java</li>
+                            <li>Python</li>
+                            <li>SQL</li>
+                            <li>JavaScript</li>
+                            <li>TypeScript</li>
+                            <li>C#</li>
+                            <li>C++</li>
+                            <li>HTML/CSS</li>
+                            <li>Assembly</li>
+                            <li>Bash</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Technologies & Tools</h4>
+                        <ul>
+                            <li>React.js</li>
+                            <li>Node.js</li>
+                            <li>Express.js</li>
+                            <li>AWS</li>
+                            <li>Google Cloud</li>
+                            <li>Git/GitHub</li>
+                            <li>Firebase</li>
+                            <li>PostgreSQL</li>
+                            <li>MongoDB</li>
+                            <li>Docker</li>
+                            <li>Kubernetes</li>
+                            <li>Terraform</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Development Practices</h4>
+                        <ul>
+                            <li>Test Automation (Jest, Selenium)</li>
+                            <li>Android Studio</li>
+                            <li>REST APIs</li>
+                            <li>Agile Development</li>
+                            <li>MVC Architecture</li>
+                            <li>Code Review</li>
+                            <li>CI/CD Pipelines</li>
+                            <li>Database Design</li>
+                            <li>Software Security</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Specialized Knowledge</h4>
+                        <ul>
+                            <li>Machine Learning</li>
+                            <li>Reinforcement Learning</li>
+                            <li>Data Structures & Algorithms</li>
+                            <li>Mobile Development</li>
+                            <li>Full-Stack Development</li>
+                            <li>Cloud Infrastructure</li>
+                            <li>Real-time Systems</li>
+                            <li>Performance Optimization</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="section">
+                <h2>Education</h2>
+                <div class="education-grid">
+                    <div class="education-item">
+                        <h4>Southern New Hampshire University</h4>
+                        <div class="degree">Bachelor of Science in Computer Science</div>
+                        <div class="gpa">Cumulative GPA: 3.90 | June 2025</div>
+                        <p><strong>Relevant Coursework:</strong> Data Structures, Full Stack Development, Software Security, Mobile Architecture, Database Systems, Software Automation, Operating Platforms, Discrete Mathematics, Applied Linear Algebra</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Brookdale Community College</h4>
+                        <div class="degree">Associate of Science in Computer Science | Associate of Science in Business Administration</div>
+                        <div class="gpa">Cumulative GPA: 3.77 | May 2023</div>
+                        <p><strong>Achievements:</strong> Dean's List for 7 semesters</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section id="contact" class="section">
+                <h2>Contact Information</h2>
+                <div class="contact-info">
+                    <p>I'm always interested in discussing new opportunities and collaborations in software development.</p>
+                    <div class="contact-links">
+                        <a href="mailto:me@jklenk.com">📧 Email</a>
+                        <a href="https://www.linkedin.com/in/josephklenk/">💼 LinkedIn</a>
+                        <a href="https://www.github.com/JosephKlenk">🔗 GitHub</a>
+                        <a href="https://www.josephklenk.github.io/">🌐 Portfolio Website</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Joseph Klenk. CS 499 Computer Science Capstone ePortfolio.</p>
+            <p>Demonstrating mastery of software design, algorithms, and database integration through enhanced artifacts.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(21, 21, 21, 0.95)';
+                nav.style.backdropFilter = 'blur(10px)';
+            } else {
+                nav.style.background = '#151515';
+                nav.style.backdropFilter = 'none';
+            }
+        });
+
+        // Highlight active navigation item
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .nav-links a.active {
+            background-color: white;
+            color: #151515;
+        }
+    </style>
+</body>
+</html>

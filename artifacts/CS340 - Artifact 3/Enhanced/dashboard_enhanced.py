@@ -299,7 +299,7 @@ def update_data(filter_type, age_range):
     
     # Results summary
     summary = html.Div([
-        html.H4(f"🎯 Results: {len(filtered_df)} animals found", style={'color': '#2c3e50', 'margin': '0'}),
+        html.H4(f"Results: {len(filtered_df)} animals found", style={'color': '#2c3e50', 'margin': '0'}),
         html.P(f"Filter: {filter_desc}", style={'color': '#7f8c8d', 'margin': '5px 0'})
     ], style={
         'padding': '15px',
@@ -388,7 +388,7 @@ def update_map(table_data):
         color='breed',
         zoom=9,
         height=500,
-        title=f'🗺️ Animal Locations (showing {min(100, len(map_df))} of {len(map_df)})'
+        title=f'Animal Locations (showing {min(100, len(map_df))} of {len(map_df)})'
     )
     
     fig.update_layout(

@@ -97,7 +97,7 @@ app.layout = html.Div([
     
     # Filter Controls
     html.Div([
-        html.H3('🔍 Filter Controls', style={'margin-bottom': '20px', 'color': '#2c3e50'}),
+        html.H3('Filter Controls', style={'margin-bottom': '20px', 'color': '#2c3e50'}),
         
         html.Div([
             # Rescue Type Filter
